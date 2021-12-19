@@ -17,7 +17,7 @@ func NewAdapter(driverName, dataSourceName string) (*Adapter, error) {
 	// connect db
 	db, err := sql.Open(driverName, dataSourceName)
 	if err != nil {
-		log.Fatalf("DB connecting is failur: %v", err)
+		log.Fatalf("DB connecting is failure: %v", err)
 	}
 
 	// test db connection
@@ -35,20 +35,17 @@ func (da Adapter) CloseDbConnection() {
 	}
 }
 
-func (da Adapter) AddHistory(answer int32, operation string) error {
-	queryString, args, err := sq.Insert("arith_history").
-		Columns("date", "answer", "operation").
-		Values(time.Now(), answer, operation).
-		ToSql()
+func (da Adapter) AddToHistory(answer int32, operation string) error {
+	queryString, args, err := sq.Insert("arith_history").Columns("date", "answer", "operation").
+		Values(time.Now(), answer, operation).ToSql()
 	if err != nil {
 		return err
 	}
 
-	result, err := da.db.Exec(queryString, args...)
+	_, err = da.db.Exec(queryString, args...)
 	if err != nil {
 		return err
 	}
-	log.Printf("Result insert row in db: %v", result)
 
 	return nil
 }

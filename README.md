@@ -19,6 +19,10 @@ Update your PATH so that the protoc compiler can find the plugins:
 
 `protoc --go-grpc_out=internal/adapters/framework/left/grpc --proto_path=internal/adapters/framework/left/grpc/proto internal/adapters/framework/left/grpc/proto/arithmetic_svc.proto`
 
+## next
+
+`protoc --go-grpc_out=require_unimplemented_servers=false:internal/adapters/framework/left/grpc --proto_path=internal/adapters/framework/left/grpc/proto internal/adapters/framework/left/grpc/proto/arithmetic_svc.proto`
+
 ## Install module
 
 `go get -u google.golang.org/grpc`

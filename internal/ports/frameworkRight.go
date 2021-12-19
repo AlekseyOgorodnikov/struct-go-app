@@ -1,6 +1,6 @@
 package ports
 
 type DbPort interface {
-	CloceDcConnection()
+	CloseDbConnection()
 	AddToHistory(answer int32, operation string) error
 }
