@@ -14,6 +14,8 @@ import (
 
 func main() {
 	var err error
+	os.Setenv("DB_DRIVER", "mysql")
+	os.Setenv("DS_NAME", "root:Root147258*@tcp(127.0.0.1:3306)/hex_test")
 
 	// ports
 	var dbaseAdapter ports.DbPort
